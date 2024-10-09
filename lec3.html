@@ -1,0 +1,33 @@
+<html>
+<head>
+    <title></title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //$('div[title = "div1Title"]').css('border', '5px solid red');
+            //$('div[title][style]').css('border', '5px solid black');
+            $('div[title = "div1Title"][style = "background-color: red;"]').css('border', '5px solid black');
+        });
+    </script>
+</head>
+<body>
+    <div title="div1Title" style="background-color: red;">
+        DIV 1
+    </div>
+    <br />
+    <div title="div2Title">
+        DIV 2
+    </div>
+    <p title="pTitle">
+        This is a paragraph
+    </p>
+    <span title="div1Title">
+        SAPN 1
+    </span>
+    <br /><br />
+    <span>
+        SPAN 2
+    </span>
+</body>
+</html>

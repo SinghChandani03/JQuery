@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+
+    <script src="Scripts/jquery-1.11.2.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+          //  $('div[title!="div1Title"]').css('border', '5px solid red');
+          //$('div:not([title="div1Title"])').css('border', '5px solid red');
+         // $('[title*="Title"]').css('border', '5px solid red');
+         // $('[title*="mySpan"]').css('border', '5px solid red');
+         //$('[title~="mySpan"]').css('border', '5px solid red');
+        // $('[title|="myTitle"]').css('border', '5px solid red');
+        //$('[title^="div"]').css('border', '5px solid red');
+        $('[title$="Heading"]').css('border', '5px solid red');
+        });
+    </script>
+</head>
+<body>
+    <div title="div1Title">
+        DIV 1
+    </div>
+    <br />
+    <div title="div2Title">
+        DIV 2
+    </div>
+    <p title="myTitle-paragraph">
+        This is a paragraph
+    </p>
+    <p title="myTitleHeading">
+        This is a paragraph
+    </p>
+    <span title="div1Title">
+        SAPN 1
+    </span>
+    <br /><br />
+    <span title="mySpan Heading">
+        SPAN 2
+    </span>
+</body>
+</html>

@@ -1,0 +1,37 @@
+
+.heading {
+    text-align: center;
+    font-family: Papyrus;
+    color: #008000;
+    font-weight: bold;
+    margin: 3rem 0;
+    font-size: 2.5rem;
+}
+
+.form-control {
+    border: 1px solid #008000;
+}
+.is-invalid {
+    border-color: #dc3545 !important;
+}
+
+.is-valid {
+    border-color: #28a745 !important;
+}
+.container {
+    box-shadow: 0 0 20px gray;
+    width: 55%;
+    min-width: 45rem;
+    margin: 6rem 25rem;
+    padding: 2rem 5rem;
+    border: none;
+    border-radius: 1rem;
+    background-color: #A9BA9D;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+}
+.form-label {
+    color: #008000;
+    font-weight: bold;
+}

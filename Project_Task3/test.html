@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Demo</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .message {
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .success { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <div class="message" id="message"></div>
+
+    <button id="insertBtn">Insert</button>
+    <button id="updateBtn">Update</button>
+    <button id="deleteBtn">Delete</button>
+
+    <script>
+        $(document).ready(function () {
+            $('#insertBtn').on('click', function () {
+                showMessage('Insert successful.', 'success');
+            });
+
+            $('#updateBtn').on('click', function () {
+                showMessage('Update successful.', 'success');
+            });
+
+            $('#deleteBtn').on('click', function () {
+                showMessage('Delete successful.', 'error');
+            });
+
+            function showMessage(message, type) {
+                $('#message').text(message).removeClass().addClass('message ' + type);
+            }
+        });
+    </script>
+</body>
+</html>

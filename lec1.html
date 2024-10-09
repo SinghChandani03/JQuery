@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+    <h1>User Registration Form</h1>
+    <form id="registrationForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" required><br><br>
+
+        <label>Gender:</label>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label><br><br>
+
+        <label for="country">Country:</label>
+        <select id="country">
+            <option value="">Select Country</option>
+            <!-- Add your country options here -->
+        </select><br><br>
+
+        <label for="city">City:</label>
+        <select id="city">
+            <option value="">Select City</option>
+            <!-- Add your city options here -->
+        </select><br><br>
+
+        <input type="submit" value="Register">
+    </form>
+
+    <h1>Registered Users</h1>
+    <table id="userTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>Country</th>
+                <th>City</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="userTableBody">
+            <!-- Table body will be populated dynamically -->
+        </tbody>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+
+$(document).ready(function () {
+    // Initialize the user data array
+    let userData = JSON.parse(localStorage.getItem('userData')) || [];
+
+    // Function to populate the table with user data
+    function populateTable() {
+        $('#userTableBody').empty();
+        userData.forEach(function (user, index) {
+            $('#userTableBody').append(`
+                <tr>
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td>${user.gender}</td>
+                    <td>${user.country}</td>
+                    <td>${user.city}</td>
+                    <td>
+                        <button class="editUser" data-index="${index}">Edit</button>
+                        <button class="deleteUser" data-index="${index}">Delete</button>
+                    </td>
+                </tr>
+            `);
+        });
+    }
+
+    // Populate the table initially
+    populateTable();
+
+    // Handle form submission
+    $('#registrationForm').submit(function (event) {
+        event.preventDefault();
+        
+        // Get form values
+        let name = $('#name').val();
+        let email = $('#email').val();
+        let password = $('#password').val();
+        let gender = $('input[name="gender"]:checked').val();
+        let country = $('#country').val();
+        let city = $('#city').val();
+
+        // Add new user data to userData array
+        userData.push({
+            name: name,
+            email: email,
+            gender: gender,
+            country: country,
+            city: city
+        });
+
+        // Save userData to local storage
+        localStorage.setItem('userData', JSON.stringify(userData));
+
+        // Repopulate the table
+        populateTable();
+
+        // Clear the form
+        $('#registrationForm')[0].reset();
+    });
+
+    // Handle delete user button click
+    $(document).on('click', '.deleteUser', function () {
+        let index = $(this).data('index');
+        if (confirm("Are you sure want to delete?")) {
+          userData.splice(index, 1);
+          localStorage.setItem('userData', JSON.stringify(userData));
+          populateTable();
+        }
+    });
+
+    // Handle edit user button click
+    $(document).on('click', '.editUser', function () {
+        let index = $(this).data('index');
+        let user = userData[index];
+
+        // Populate form fields with user data
+        $('#name').val(user.name);
+        $('#email').val(user.email);
+        // Similarly, populate other form fields...
+
+        // Remove the edited user from userData array
+        userData.splice(index, 1);
+
+        // Save userData to local storage
+        localStorage.setItem('userData', JSON.stringify(userData));
+
+        // Repopulate the table
+        populateTable();
+    });
+});
+
+    </script>
+</body>
+</html>
+
+
+
+$(document).on('click', '.editUser', function () {
+
+    const userData = localStorage.getItem("userData") ? JSON.parse(localStorage.getItem("userData")) : [];
+
+    let index = $(this).data('index');
+    let user = userData[index];
+
+    $('#id').val(user.id);
+    $('#project_title').val(user.project_title);
+    $('#status').val(user.status);
+    $('#start_date').val(user.start_date);
+    $('#due_date').val(user.due_date);
+    $('#description').val(user.description);
+
+    // Populate form fields with user data
+    const UpdateId = $('#id').val();
+    const UpdateTitle = $('#project_title').val();
+    const UpdateStatus = $('#status').val();
+    const UpdateStart_date = $('#start_date').val();
+    const UpdateDue_date = $('#due_date').val();
+    const UpdateDesc = $('#description').val();
+
+    userData[index] = {
+      id: UpdateId,
+      project_title: UpdateTitle,
+      status: UpdateStatus,
+      start_date: UpdateStart_date,
+      due_date: UpdateDue_date,
+      description: UpdateDesc,
+    }
+
+    // Save userData to local storage
+    localStorage.setItem('userData', JSON.stringify(userData));
+  });
